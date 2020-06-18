@@ -1,0 +1,6 @@
+# functionName ----------------
+# function description
+# comments and links
+def functionName():
+	# do something
+	return("expression")

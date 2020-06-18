@@ -1,0 +1,16 @@
+import os, glob
+
+os.chdir("C:/Workspace/rawdata")
+
+searches = [2003,2008,2011,2012,2014,2016]
+searches = [str(s) for s in searches]
+results = [glob.glob("*"+s+"*.jp2") for s in searches]
+
+for i in range(len(results)):
+	outFile = "NAIP"+searches[i]+".tif"
+	inFiles = results[i]
+	print ("merging...",inFiles)
+	cmd = "gdal_merge.py -of Gtiff -t_srs 'EPSG:26918' -o %s %s" % (outFile,inFiles)
+	print(outFile," created!")
+	
+	

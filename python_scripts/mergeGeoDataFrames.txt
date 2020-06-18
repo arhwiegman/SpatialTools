@@ -1,0 +1,23 @@
+# merge shapefiles 
+# Adrian Wiegman 
+# 2018-06-19
+
+# IMPORT MODULES ******************************************
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import os, glob, re
+from scipy import stats
+
+# DEFINE FUNCTIONS ****************************************
+# working directory
+os.chdir('C:\\Users\\Adria\\Documents\\UVM-research\\LCB-Geospatial\\Otter-analysis\\Python_scripts')
+exec(open('arcpy_Functions.py','r').read())
+
+# MAIN PROGRAM ********************************************
+wd = "C:\\Users\\Adria\\Google Drive\\AW_Career\\Education\\UVM\\Research\\NCED Labratory\\NCED_Wetlands_2018\\SampleSites"
+os.chdir(wd)
+filelist = glob.glob('*.shp')
+
+gdf1,gdf2,gdf3,gdf4 = [gpd.open(f) for f in filelist]
+ 

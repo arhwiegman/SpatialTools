@@ -1,0 +1,55 @@
+# IMPORT MODULES ***********************************************
+import requests, os, glob, re, sys
+import pandas as pd
+import numpy as np
+import scipy.stats
+
+# GLOBAL VARIABLES ****************************************
+# working directory
+wd = "D:\\GISdata\\UVM_Temp\\"
+# NRCS easement id codes
+id = [0,1,2,3,4,5,10,12,13,14,15,16,17,18,20,21,22,24,25,39,40,41,42,43,44,45,46,47,48,49,51,52,57]
+
+# USER DEFINED FUNCTIONS ***************************************
+# download functions arcpy_Functions.py from github
+# if running entire script make sure main and functions are in same directory
+# set the current directory to folder containing function script
+os.chdir(os.path.join(wd,"Python_scripts"))
+from arcpy_Functions import*
+defLookup() #lookup defined functions code with defLookup
+
+# 4. SUMMARIZE DATA INSIDE EACH NRCS EASEMENT >>>>>>>>>>>>>>>>>>>>>>>>
+# create a data table with summary variables for each easement
+from osgeo import gdal
+import rasterio
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy.stats
+
+I4 = os.path.join(wd,"maskeddata") #input file dir
+os.chdir(I4)
+filenames = glob.glob('*tif')
+for n in filenames:  
+
+		f = gdal.Open(n) # open file with gdal library
+		if 'NAIP' in n: 
+			red = f.GetRasterBand(1).ReadAsArray()
+			blu = f.GetRasterBand(2).ReadAsArray()
+			grn = f.GetRasterBand(3).ReadAsArray()
+			nir = f.GetRasterBand(4).ReadAsArray()
+			red = red.astype(np.float64)
+			nir = nir.astype(np.float64)
+			array = osgNDVI(red,nir)
+		else:
+			array = f.GetRasterBand(1).ReadAsArray()
+		values = np.array.flatten() #numpy flatten
+		stats = scipy.stats.describe(values)
+		plt.imshow(array)
+		plt.colorbar(array)
+		
+
+
+query = input("objective complete, type 'Y' to continue to the next objective")		
+if query != 'Y': 
+	print('exiting script')
+	sys.exit()

@@ -1,0 +1,22 @@
+# Name: FlowDirection_Example.py
+# Description: Creates a raster of flow direction from each cell to its
+#    steepest downslope neighbor.
+# Requirements: Spatial Analyst Extension
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inSurfaceRaster = "elevation"
+outDropRaster = "C:/sapyexamples/output/dropraster"
+
+# Execute FlowDirection
+outFlowDirection = FlowDirection(inSurfaceRaster, "FORCE", outDropRaster)
+
+# Save the output 
+outFlowDirection.save("C:/sapyexamples/output/outflowdir02")
