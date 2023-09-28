@@ -1,0 +1,27 @@
+{
+    "id": "D0FDCA8B",
+    "path": "~/GitHub/SpatialTools/arcpy_notebooks/Nload/terminus.py",
+    "project_path": "terminus.py",
+    "type": "python",
+    "hash": "2804403807",
+    "contents": "",
+    "dirty": false,
+    "created": 1677789758553.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "4,106",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1677794603,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1677794603419,
+    "read_only": false,
+    "read_only_alternatives": []
+}
